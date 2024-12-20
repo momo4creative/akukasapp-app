@@ -1,0 +1,21 @@
+{
+	"name": "AKUKAS-APP",
+	"short_name": "AKUAPP",
+	"start_url": "/",
+	"display": "standalone",
+	"theme_color": "#3b82f6",
+	"background_color": "#3b82f6",
+	"icons": [
+		{
+			"src": "/icons/cash.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		},
+		{
+			"src": "/icons/cash-maskable.png",
+			"type": "image/png",
+			"sizes": "512x512",
+			"purpose": "maskable"
+		}
+	]
+}
