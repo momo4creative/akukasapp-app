@@ -11,7 +11,7 @@
 	let { children, icon, loading, ...props }: Props = $props();
 
 	const styles =
-		'inline-flex items-center justify-center rounded bg-slate-500 p-1 text-white hover:bg-slate-600 focus:outline-none focus:ring disabled:cursor-not-allowed disabled:opacity-60';
+		'inline-flex items-center justify-center rounded bg-slate-500 py-1 px-1.5 text-white hover:bg-slate-600 focus:outline-none focus:ring disabled:cursor-not-allowed disabled:opacity-60';
 </script>
 
 <button
@@ -22,7 +22,7 @@
 	})}
 >
 	{#if icon && !loading}
-		<span transition:fly={{ x: 10, delay: 300 }}>
+		<span transition:fly={{ x: 10 }}>
 			<Icon icon="mdi:{icon}" />
 		</span>
 	{/if}

@@ -19,7 +19,7 @@ export const handleSubmit = <S extends Record<string, any>, F extends z.ZodType>
     // 
     onSubmit && onSubmit()
     // 
-    return async ({ result }: { result: ActionResult<S, ResultHandleFail<F>> }) => {
+    return async ({ result, formElement }: { result: ActionResult<S, ResultHandleFail<F>>; formElement: HTMLFormElement }) => {
         // 
         if (result.type == 'failure') {
             console.log('Failure => ', result.data);
@@ -28,6 +28,7 @@ export const handleSubmit = <S extends Record<string, any>, F extends z.ZodType>
         }
         if (result.type == 'success') {
             console.log('Success => ', result.data);
+            formElement.reset()
             onSuccess && onSuccess(result.data)
             redirectTo && goto(redirectTo)
             return
