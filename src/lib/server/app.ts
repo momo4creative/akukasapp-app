@@ -4,6 +4,7 @@ import { fail } from "@sveltejs/kit"
 import db from "./db"
 import { zodParce } from "./zod"
 import { idSchema } from "$lib/schema/id"
+import { createTransaksiSchema, createTransaksiSchemaTranform } from "$lib/schema/transaksi"
 
 
 async function createApp<T extends Record<string, any>>(table: DbTable, data: DbCreate<T>[]) {
@@ -73,4 +74,26 @@ export const akun = {
 }
 
 export const transaksi = {
+    create: async (request: Request) => {
+        try {
+            const form = await zodParce(request, createTransaksiSchemaTranform)
+            const result = await createApp<Transaksi>('transaksi', form)
+            return result
+        } catch (e) {
+            return fail(400, handleFail<typeof createTransaksiSchema>(e))
+        }
+    },
+    update: async (request: Request) => { },
+
+    delete: async (request: Request) => { },
+
+    read: async (opts: DbOptions<Transaksi> = {}) => {
+        try {
+            const res = await readApp<Transaksi>('transaksi', opts)
+            return res
+        } catch (e) {
+            const err = handleFail(e)
+            throw new Error(err.message);
+        }
+    },
 }
