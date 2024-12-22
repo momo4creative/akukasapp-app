@@ -4,7 +4,7 @@
 	import ErrorMessage from './error-message.svelte';
 
 	interface Props extends HTMLInputAttributes {
-		label: string;
+		label?: string;
 		errors?: string[];
 	}
 	let { label, errors, value = $bindable(), ...props }: Props = $props();

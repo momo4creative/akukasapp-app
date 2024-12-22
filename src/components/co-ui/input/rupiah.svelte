@@ -29,6 +29,7 @@
 			value={tempValue}
 			onkeyup={(e) => onkeyup(e.currentTarget.value)}
 			spellcheck="false"
+			placeholder="Rp 0"
 			class={cn('w-full rounded border border-gray-300 px-3 py-1 focus:outline-none focus:ring', {
 				'border-red-500 focus:ring-red-300': !!errors
 			})}
