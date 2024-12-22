@@ -38,7 +38,7 @@
 		<h1 class="text-2xl">Input Akun Baru</h1>
 	</header>
 
-	<div class="grid gap-3">
+	<div class="grid gap-1.5">
 		{#if value?.id}
 			<input type="hidden" name="id" value={value.id} />
 		{/if}
