@@ -4,9 +4,6 @@ import { akun } from "$lib/server/app";
 
 export const load = (async () => {
     return {
-        akun: akun.read({
-            _sort: { kode: 'asc' }
-        })
     };
 }) satisfies PageServerLoad;
 
