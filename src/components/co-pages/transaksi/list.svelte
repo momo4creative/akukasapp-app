@@ -9,13 +9,13 @@
 
 <ul class="divide-y">
 	{#each values as v}
-		<li class="grid grid-cols-3 bg-white px-3 py-1.5">
-			<span>{formatDateIndo(v.tanggal)}</span>
-			<div>
-				<span>{v.uraian}</span>
-				<small>{v.akun.uraian}</small>
+		<li class="bg-white px-3 py-1.5">
+			<small>{v.akun.uraian}</small>
+			<div class="grid grid-cols-3">
+				<span>{formatDateIndo(v.tanggal)}</span>
+				<h2 class="font-medium">{v.uraian}</h2>
+				<span class="text-right">{formatNumberToRupiah(v.nilai)}</span>
 			</div>
-			<span class="text-right">{formatNumberToRupiah(v.nilai)}</span>
 		</li>
 	{/each}
 </ul>

@@ -9,15 +9,15 @@
 {#await data.promiseSummaryAkun}
 	<Memuat />
 {:then res}
-	<h1 class="m-3 text-4xl">Anggaran</h1>
+	<h1 class="m-3 text-3xl font-bold text-gray-400">Anggaran</h1>
 	<ListAkun values={res.data.filter((d) => d.kode.toString().startsWith('5'))} />
 
-	<hr class="my-6" />
-	<h1 class="m-3 text-4xl">Kas</h1>
+	<hr class="my-3" />
+	<h1 class="m-3 text-3xl font-bold text-gray-400">Kas</h1>
 	<ListAkun values={res.data.filter((d) => d.kode.toString().startsWith('1'))} />
 
-	<hr class="my-6" />
-	<h1 class="m-3 text-4xl">Lain</h1>
+	<hr class="my-3" />
+	<h1 class="m-3 text-3xl font-bold text-gray-400">Lain</h1>
 	<ListAkun
 		values={res.data.filter(
 			(d) => !d.kode.toString().startsWith('1') && !d.kode.toString().startsWith('5')

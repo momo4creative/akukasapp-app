@@ -32,9 +32,9 @@
 </script>
 
 <div
-	in:fly={{ y: 20, delay: 500, duration: 500, opacity: 0 }}
-	out:fly={{ y: 20, duration: 500, opacity: 0 }}
-	class="absolute w-full max-w-sm px-6 py-12"
+	in:fly={{ y: -20, delay: 500, duration: 500, opacity: 0 }}
+	out:fly={{ y: -20, duration: 500, opacity: 0 }}
+	class="p-6"
 >
 	<form
 		action="/auth?/{register ? 'register' : 'login'}"
@@ -42,7 +42,7 @@
 		use:enhance={submit}
 		class="grid gap-6 rounded-md border bg-white p-3 shadow-md"
 	>
-		<h1 class="text-4xl">{register ? 'Register' : 'Login'}</h1>
+		<h1 class="text-center text-4xl font-bold">{register ? 'Register' : 'Login'}</h1>
 
 		<FlashMessage message={error?.message} status="error" />
 
