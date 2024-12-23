@@ -6,7 +6,7 @@
 	let { data }: { data: PageData } = $props();
 </script>
 
-<h1 class="my-3 text-4xl">Akun</h1>
+<h1 class="m-3 text-4xl">Akun</h1>
 
 {#await data.promiseSummaryAkun}
 	<Memuat />
