@@ -1,6 +1,6 @@
 import { createAkunSchema, updateAkunSchema } from "$lib/schema/akun"
 import { handleFail } from "$lib/utils/handle-action"
-import { fail } from "@sveltejs/kit"
+import { error, fail } from "@sveltejs/kit"
 import db from "./db"
 import { zodParce } from "./zod"
 import { idSchema } from "$lib/schema/id"
@@ -27,6 +27,12 @@ async function deleteApp(table: DbTable, id: string[]) {
 
 async function readApp<T extends Record<string, any>>(table: DbTable, opts: DbOptions<T> = {}) {
     db.params = { [table]: { read: opts } }
+    const res = await db.fetching<DbReadResult<T>>()
+    return res
+}
+
+async function summaryApp<T extends Record<string, any>>(table: DbTable, opts: DbOptions<T & Akun & Transaksi> = {}) {
+    db.params = { [table]: { summary: opts } }
     const res = await db.fetching<DbReadResult<T>>()
     return res
 }
@@ -67,7 +73,17 @@ export const akun = {
             return res
         } catch (e) {
             const err = handleFail(e)
-            throw new Error(err.message);
+            return error(404, err.message)
+        }
+    },
+
+    summary: async (opts: DbOptions<AkunTransaksi> = {}) => {
+        try {
+            const res = await summaryApp<SummaryAkun>('akun', opts)
+            return res
+        } catch (e) {
+            const err = handleFail(e)
+            return error(404, err.message)
         }
     },
 
@@ -93,7 +109,16 @@ export const transaksi = {
             return res
         } catch (e) {
             const err = handleFail(e)
-            throw new Error(err.message);
+            return error(404, err.message)
+        }
+    },
+    summary: async (opts: DbOptions<SummaryTransaksi> = {}) => {
+        try {
+            const res = await summaryApp<SummaryTransaksi>('transaksi', opts)
+            return res
+        } catch (e) {
+            const err = handleFail(e)
+            return error(404, err.message)
         }
     },
 }

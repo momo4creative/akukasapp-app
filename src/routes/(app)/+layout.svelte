@@ -4,7 +4,7 @@
 	import { setAkuns, setPromiseLastTransaksi } from '$lib/utils/context';
 
 	let { data, children }: { data: LayoutData; children: Snippet } = $props();
-	setAkuns(data.promiseAkun);
+	setAkuns(data.promiseSummaryAkun);
 	setPromiseLastTransaksi(data.promiseLastTransaksi);
 </script>
 

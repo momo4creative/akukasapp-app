@@ -7,7 +7,7 @@
 
 <h1 class="my-3 text-4xl">Akun</h1>
 
-{#await data.promiseAkun}
+{#await data.promiseSummaryAkun}
 	<p>Memuat..</p>
 {:then res}
 	<ul class="my-3 divide-y">
