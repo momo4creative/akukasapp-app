@@ -7,10 +7,6 @@ export const load = (async () => {
         promiseListTransaksi: transaksi.summary({
             _sort: { created_at: 'desc' },
             _order: [0, 10]
-        }),
-        promiseLastTransaksi: transaksi.read({
-            _sort: { created_at: 'desc' },
-            _order: [0, 1]
         })
     };
 }) satisfies PageServerLoad;
