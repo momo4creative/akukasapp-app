@@ -22,9 +22,19 @@ type Transaksi = {
     id: string
     user_id: string
     akun_id: string
+    tanggal: string | Date
     kode: string
     uraian: string
     nilai: number
     created_at: string | Date
     updated_at?: string | Date
 }
+
+type SummaryAkun = Akun & {
+    transaksi: Transaksi[]
+    nilai: number
+}
+
+type AkunTransaksi = Akun & Transaksi
+
+type SummaryTransaksi = Transaksi & { akun: Akun }

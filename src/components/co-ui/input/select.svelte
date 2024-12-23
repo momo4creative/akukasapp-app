@@ -53,7 +53,7 @@
 	<ul
 		use:clickOutside
 		transition:fly={{ y: -20, opacity: 0 }}
-		class="fixed inset-x-0 top-0 z-10 mt-10 max-h-40 divide-y overflow-y-auto rounded-md border bg-white shadow-md sm:absolute"
+		class="absolute z-10 w-full max-w-md divide-y overflow-y-auto rounded-md border bg-white shadow-md"
 	>
 		<li class="p-1.5">
 			<Input bind:value={cari} type="search" name={'search_' + props.name} placeholder="Cari" />
@@ -86,7 +86,9 @@
 			})}
 		/>
 		{#if open}
-			{@render dropdown()}
+			<div class="fixed inset-0 z-10 flex justify-center bg-black/20 px-6 py-12">
+				{@render dropdown()}
+			</div>
 		{/if}
 	</div>
 	<ErrorMessage {errors} />
