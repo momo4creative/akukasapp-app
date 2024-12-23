@@ -9,6 +9,7 @@
 	import Input from '@ui/input/input.svelte';
 	import Rupiah from '@ui/input/rupiah.svelte';
 	import Select from '@ui/input/select.svelte';
+	import Memuat from '@ui/loading/memuat.svelte';
 	import { number } from 'zod';
 
 	interface Props {
@@ -58,7 +59,7 @@
 
 	<div class="grid gap-1.5">
 		{#await getPromiseLastTransaksi()}
-			<p>Tunggu..</p>
+			<Memuat />
 		{:then res}
 			<Input value={getKodeTransaksi(res.data[0])} name="kode" label="Kode" readonly />
 		{/await}
@@ -72,7 +73,7 @@
 		/>
 
 		{#await getAkuns()}
-			<p>Tunggu..</p>
+			<Memuat />
 		{:then res}
 			<Select
 				errors={error?.errors?.kredit_id}

@@ -1,12 +1,13 @@
 <script lang="ts">
 	import ListAkun from '@pages/beranda/list-akun.svelte';
 	import type { PageData } from './$types';
+	import Memuat from '@ui/loading/memuat.svelte';
 
 	let { data }: { data: PageData } = $props();
 </script>
 
 {#await data.promiseSummaryAkun}
-	<p class="italic">Memuat..</p>
+	<Memuat />
 {:then res}
 	<h1 class="m-3 text-4xl">Anggaran</h1>
 	<ListAkun values={res.data.filter((d) => d.kode.toString().startsWith('5'))} />

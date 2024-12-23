@@ -3,6 +3,7 @@
 	import type { PageData } from './$types';
 	import List from '@pages/transaksi/list.svelte';
 	import Pagination from '@pages/layout/pagination.svelte';
+	import Memuat from '@ui/loading/memuat.svelte';
 
 	let { data }: { data: PageData } = $props();
 </script>
@@ -10,7 +11,7 @@
 <h1 class="m-3 text-4xl">Transaksi</h1>
 
 {#await data.promiseListTransaksi}
-	<p class="italic">Memuat..</p>
+	<Memuat />
 {:then res}
 	<List values={res.data} />
 	<Pagination values={res} />
