@@ -1,5 +1,6 @@
 import { goto } from "$app/navigation"
-import type { ActionResult } from "@sveltejs/kit"
+import type { idSchema } from "$lib/schema/id"
+import { redirect, type ActionResult } from "@sveltejs/kit"
 import { z } from "zod"
 
 type Params<S extends Record<string, any>, F extends z.ZodType> = {
@@ -10,7 +11,8 @@ type Params<S extends Record<string, any>, F extends z.ZodType> = {
 }
 
 
-export type ResultHandleFail<T extends z.ZodType> = {
+export type ResultHandleFail<T extends z.ZodType = typeof idSchema> = {
+    status: 400 | 401 | 404 | number
     errors?: z.inferFlattenedErrors<T>['fieldErrors']
     message: string
 }
@@ -37,15 +39,22 @@ export const handleSubmit = <S extends Record<string, any>, F extends z.ZodType>
 }
 
 export const handleFail = <T extends z.ZodType>(e: unknown): ResultHandleFail<T> => {
+    let status = 404
     let errors = undefined
     let message = 'Kesalahan system !'
 
     if (e instanceof z.ZodError) {
+        status = 400
         errors = e.flatten().fieldErrors
         message = "Kesalahan validasi form !"
     } else if (e instanceof Error) {
+        status = 400
         message = e.message
+
+        if (e.message.includes('INVALID_AUTH')) {
+            status = 401
+        }
     }
 
-    return { errors, message }
+    return { errors, message, status }
 }

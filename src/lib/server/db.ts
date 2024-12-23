@@ -1,4 +1,5 @@
 import { PRIVATE_GS_API } from "$env/static/private";
+import { redirect } from "@sveltejs/kit";
 
 class Database {
     params!: DbParams

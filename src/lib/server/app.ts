@@ -73,7 +73,7 @@ export const akun = {
             return res
         } catch (e) {
             const err = handleFail(e)
-            return error(404, err.message)
+            return error(err.status, err)
         }
     },
 
@@ -83,7 +83,7 @@ export const akun = {
             return res
         } catch (e) {
             const err = handleFail(e)
-            return error(404, err.message)
+            return error(err.status, err)
         }
     },
 
@@ -109,7 +109,7 @@ export const transaksi = {
             return res
         } catch (e) {
             const err = handleFail(e)
-            return error(404, err.message)
+            return error(err.status, err)
         }
     },
     summary: async (opts: DbOptions<SummaryTransaksi> = {}) => {
@@ -118,7 +118,7 @@ export const transaksi = {
             return res
         } catch (e) {
             const err = handleFail(e)
-            return error(404, err.message)
+            return error(err.status, err)
         }
     },
 }

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { invalidate, invalidateAll } from '$app/navigation';
+	import { invalidateAll } from '$app/navigation';
 	import { handleSubmit } from '$lib/utils/handle-action';
 	import Button from '@ui/button/button.svelte';
 	import Input from '@ui/input/input.svelte';
@@ -9,8 +9,9 @@
 	interface Props {
 		value?: Akun;
 		loading?: boolean;
+		oncancel?: () => void;
 	}
-	let { value, loading }: Props = $props();
+	let { value, loading, oncancel }: Props = $props();
 
 	let kodeAkun = $state(value?.kode);
 
@@ -18,6 +19,7 @@
 		return handleSubmit({
 			onSubmit: () => (loading = true),
 			onSuccess: async () => {
+				oncancel && oncancel();
 				loading = false;
 				await invalidateAll();
 			},
@@ -35,7 +37,7 @@
 	class="space-y-6"
 >
 	<header>
-		<h1 class="text-2xl">Input Akun Baru</h1>
+		<h1 class="text-2xl font-bold">{value ? 'Ubah Akun' : 'Input Akun Baru'}</h1>
 	</header>
 
 	<div class="grid gap-1.5">
@@ -56,7 +58,8 @@
 		{/if}
 	</div>
 
-	<footer class="">
+	<footer class="flex items-center gap-1">
+		<Button onclick={oncancel} icon="close-circle">Batal</Button>
 		<Button {loading} icon="send" type="submit">Simpan</Button>
 	</footer>
 </form>

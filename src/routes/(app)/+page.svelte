@@ -2,6 +2,7 @@
 	import ListAkun from '@pages/beranda/list-akun.svelte';
 	import type { PageData } from './$types';
 	import Memuat from '@ui/loading/memuat.svelte';
+	import FlashMessage from '@ui/flash/flash-message.svelte';
 
 	let { data }: { data: PageData } = $props();
 </script>
@@ -23,4 +24,6 @@
 			(d) => !d.kode.toString().startsWith('1') && !d.kode.toString().startsWith('5')
 		)}
 	/>
+{:catch err}
+	<FlashMessage message={err.message} status={err.status} />
 {/await}

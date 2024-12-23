@@ -2,7 +2,6 @@
 	import { enhance } from '$app/forms';
 	import type { registerSchema } from '$lib/schema/auth';
 	import { handleSubmit, type ResultHandleFail } from '$lib/utils/handle-action';
-	import Input from '@ui/input/input.svelte';
 	import Button from '@ui/button/button.svelte';
 	import FlashMessage from '@ui/flash/flash-message.svelte';
 	import type { HTMLBaseAttributes } from 'svelte/elements';
@@ -44,7 +43,7 @@
 	>
 		<h1 class="text-center text-4xl font-bold">{register ? 'Register' : 'Login'}</h1>
 
-		<FlashMessage message={error?.message} status="error" />
+		<FlashMessage message={error?.message} statusTxt="error" />
 
 		<div class="grid gap-3">
 			{@render snippetField(error)}
