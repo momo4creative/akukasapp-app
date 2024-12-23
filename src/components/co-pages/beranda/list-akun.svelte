@@ -1,5 +1,5 @@
 <script lang="ts" generics="Values extends SummaryAkun">
-	import { formatNumberToRupiah } from '$lib/utils/format';
+	import { formatDateIndo, formatNumberToRupiah } from '$lib/utils/format';
 
 	interface Props {
 		values: Values[];
@@ -25,9 +25,10 @@
 {/snippet}
 
 {#snippet transaksi(t: Values['transaksi'][0])}
-	<div class="flex justify-between px-3 py-1.5">
+	<div class="flex gap-3 px-3 py-1.5">
+		<span>{formatDateIndo(t.tanggal)}</span>
 		<span>{t.uraian}</span>
-		<span>{formatNumberToRupiah(t.nilai)}</span>
+		<span class="ms-auto">{formatNumberToRupiah(t.nilai)}</span>
 	</div>
 {/snippet}
 
