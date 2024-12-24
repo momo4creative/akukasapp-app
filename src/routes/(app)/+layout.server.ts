@@ -5,6 +5,8 @@ import type { LayoutServerLoad } from './$types';
 const d = new Date()
 
 export const load = (async ({ locals: { user } }) => {
+    console.log('Load : / layout server');
+
     const bln = d.getMonth() + 1
     const thn = d.getFullYear()
     return {

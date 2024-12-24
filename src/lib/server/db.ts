@@ -1,14 +1,16 @@
 import { PRIVATE_GS_API } from "$env/static/private";
-import { redirect } from "@sveltejs/kit";
 
 class Database {
     params!: DbParams
     session!: string
+    authenticate?: boolean
 
-    constructor() { }
+    constructor() {
+        this.authenticate = false
+    }
 
     async fetching<T>() {
-        console.log(JSON.stringify(this.params, null, 2));
+        // console.log(JSON.stringify(this.params, null, 2));
 
         if (!this.params) {
             console.log('Invalid param database !');
@@ -31,5 +33,6 @@ const db = new Database()
 export function setSession(value: string) {
     db.session = value
 }
+
 
 export default db

@@ -22,7 +22,6 @@
 
 	if (status == 401) {
 		console.log('need auth');
-
 		goto('/auth/login?msg=Silakan login terlebih dahulu !&statusTxt=warning');
 	}
 

@@ -3,6 +3,8 @@ import type { PageServerLoad } from './$types';
 import { akun } from "$lib/server/app";
 
 export const load = (async () => {
+    console.log('Load : /transaksi page server');
+
     return {
     };
 }) satisfies PageServerLoad;
