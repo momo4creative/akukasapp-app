@@ -1,4 +1,4 @@
-import { setSession } from "$lib/server/db";
+import db, { setSession } from "$lib/server/db";
 import { verifyToken } from "$lib/server/secure";
 import { redirect, type Handle } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
@@ -8,8 +8,12 @@ const auth: Handle = async ({ event, resolve }) => {
     const sessionId = event.cookies.get('sessionId')
     if (sessionId) {
         const payload = verifyToken(sessionId)
-        if (payload) setSession(payload.session)
         event.locals.user = payload
+
+        if (payload) {
+            setSession(payload.session)
+        }
+
     }
     return resolve(event)
 }
